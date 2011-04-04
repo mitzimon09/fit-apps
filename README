@@ -1,3 +1,10 @@
 Fit Apps
 
 Aplicación que gestiona los equipos que parciparan en el concurso de programación de la FIT
+
+Detalles
+Tecnología:	Grails
+Lenguaje:	Groovy
+BD:		Postgres
+Seguridad:	Sprint-Security
+Plugins:	JQuery

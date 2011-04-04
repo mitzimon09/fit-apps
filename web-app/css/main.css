@@ -5,6 +5,10 @@ html * {
 
 /* GENERAL */
 
+img {
+    border: none;
+}
+
 .spinner {
     padding: 5px;
     position: absolute;
@@ -59,7 +63,37 @@ input:focus, select:focus, textarea:focus {
 
 .body {
     float: left;
+    width: 97%;
+    display: inline;
     margin: 0 15px 10px 15px;
+}
+
+#footer {
+    clear:both;
+    text-align: center;
+    padding: 3px;
+    border-top: 1px solid #333;
+    margin-top: 15px;
+}
+
+#header {
+    background-color: #999;
+    height: 50px;
+    margin: 0px auto;
+}
+
+#header h1 {
+    color: white;
+    padding: 13px 0 0 6px;
+    font-size: 1.6em;
+}
+
+#status {
+    position: absolute;
+    top: 20px;
+    right: 6px;
+    text-align: right;
+    color: white;
 }
 
 /* NAVIGATION MENU */
@@ -92,6 +126,11 @@ input:focus, select:focus, textarea:focus {
 }
 .menuButton a.create {
     background: url(../images/skin/database_add.png) center left no-repeat;
+    color: #333;
+    padding-left: 25px;
+}
+.menuButton a.edit {
+    background: url(../images/skin/database_edit.png) center left no-repeat;
     color: #333;
     padding-left: 25px;
 }
@@ -129,9 +168,6 @@ td.errors select {
 td.errors input {
     border: 1px solid red;
 }
-td.errors textarea {
-    border: 1px solid red;
-}
 
 /* TABLES */
 
@@ -165,6 +201,7 @@ th a:link, th a:visited, th a:hover {
     width: 100%;
 }
 th.asc a, th.desc a {
+    margin-right: 10px;
     background-position: right;
     background-repeat: no-repeat;
 }
@@ -230,6 +267,7 @@ th.desc a {
     text-align: left;
     width: 15%;
     white-space: nowrap;
+    font-weight: bold;
 }
 .prop .value {
     text-align: left;
@@ -271,3 +309,38 @@ th.desc a {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
 }
+.buttons input.add {
+    background: transparent url(../images/skin/database_add.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
+.buttons input.list {
+    background: transparent url(../images/skin/database_table.png) 5px 50% no-repeat;
+    padding-left: 28px;
+}
+
+/*----- autocomplete css ---------*/
+div.autocomplete {
+    position:absolute;
+    width:250px;
+    background-color:#8cafea;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+    border: 1px solid;
+}
+div.autocomplete ul {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+    overflow:auto;
+}
+div.autocomplete ul li.selected { background-color: #294597; color: #ffffff}
+div.autocomplete ul li {
+    list-style-type:none;
+    display:block;
+    margin:0 0 0 5px;
+    padding:2px;
+    height:12px;
+    cursor:pointer;
+}
+

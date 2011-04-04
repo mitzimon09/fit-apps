@@ -49,7 +49,7 @@ grails.logging.jul.usebridge = true
 grails.spring.bean.packages = []
 
 // request parameters to mask when logging exceptions
-grails.exceptionresolver.params.exclude = ['password']
+//grails.exceptionresolver.params.exclude = ['password']
 
 // set per-environment serverURL stem for creating absolute links
 environments {
@@ -70,9 +70,9 @@ log4j = {
     // Example of changing the log pattern for the default console
     // appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+        console name:'stdout', layout:pattern(conversionPattern: '%d [FITAPPS] %5p [%t] %c{2} | %m%n')
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -87,4 +87,22 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
+    //debug  'grails.app','org.hibernate.SQL'
+    debug  'grails.app'
 }
+
+grails.gorm.default.mapping = {
+   cache true
+   id generator:'identity'
+}
+
+grails.gorm.failOnError = true
+grails.views.javascript.library="jquery"
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'general.Usuario'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'general.UsuarioRol'
+grails.plugins.springsecurity.authority.className = 'general.Rol'
+grails.plugins.springsecurity.roleHierarchy = '''
+   ROLE_ADMIN > ROLE_USER
+'''
