@@ -1,4 +1,4 @@
 <span class="copyright">
-  &copy;2011 BOLSA DE TRABAJO<br />
-  Nujev's Programers.
+  &copy;2011 FIT APPS<br />
+  Lab Kids Programers.
 </span>

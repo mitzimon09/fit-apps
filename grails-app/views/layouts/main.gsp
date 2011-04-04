@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>Bolsa de Trabajo - <g:layoutTitle default="Grails" /></title>
+    <title>FIT APPS - <g:layoutTitle default="Grails" /></title>
     <link rel="stylesheet" href="${resource(contextPath:"",dir:'css',file:'main.css')}" />
     <link rel="shortcut icon" href="${resource(contextPath:"",dir:'images',file:'favicon.ico')}" type="image/x-icon" />
     <g:layoutHead />
