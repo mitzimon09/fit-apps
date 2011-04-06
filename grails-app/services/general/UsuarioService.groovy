@@ -8,7 +8,7 @@ class UsuarioService {
     def springSecurityService
     def sessionFactory
 
-	List<Usuario> lista(def params) {
+    List<Usuario> lista(def params) {
         log.debug "Lista de usuarios"
         def usuarios = []
         if (params?.filtro) {
@@ -19,7 +19,7 @@ class UsuarioService {
         return usuarios
     }
 
-    def listaConCantidad(params) {
+    def listaConCantidad(def params) {
         def usuarios = []
         def cantidad = 0
         if (params?.filtro) {
@@ -31,28 +31,22 @@ class UsuarioService {
         }
         return [lista:usuarios, cantidad:cantidad]
     }
-	
-    Usuario obtiene(id) {
-        def usuario = Usuario.get(id)
-        if (!usuario) {
-            throw new RuntimeException("No se encontro al usuario $id")
-        }
-        return usuario
+
+    Usuario obtiene(String id) {
+        return Usuario.get(id)
     }
 	
-    Usuario crea(usuario, roles) {
-		log.debug "linea 44 $Usuario.get(springSecurityService.principal.id)"
+    Usuario crea(Usuario usuario, Set roles) {
         def creador = Usuario.get(springSecurityService.principal.id)
         usuario.save()
         for(rol in roles) {
             general.UsuarioRol.create(usuario, rol, false)
         }
-//        audita(usuario,Constantes.CREAR)
         audita(usuario,"CREAR")
         return usuario
     }
-	
-    Usuario actualiza(usuario, roles) {
+
+    Usuario actualiza(Usuario usuario, Set roles) {
         log.debug "Actualizando al usuario $usuario, $roles"
         usuario.save()
         if (roles) {
@@ -63,18 +57,16 @@ class UsuarioService {
                 general.UsuarioRol.create(usuario, rol, false)
             }
         }
-//        audita(usuario,Constantes.ACTUALIZAR)
         audita(usuario,"ACTUALIZAR")
         return usuario
     }
-	
-    String elimina(id) {
+
+    String elimina(String id) {
         def usuario = Usuario.get(id)
         String nombre = usuario.username
         UsuarioRol.removeAll(usuario)
-//        audita(usuario,Constantes.ELIMINAR)
-        audita(usuario,"ELIMINAR")
         usuario.delete()
+        audita(usuario,"ELIMINAR")
         return nombre
     }
 
@@ -93,5 +85,5 @@ class UsuarioService {
         xusuario.creador = creador
         xusuario.actividad = actividad
         xusuario.save()
-    }
+	}
 }

@@ -8,7 +8,7 @@ class XUsuario implements java.io.Serializable {
     boolean accountLocked
     boolean passwordExpired
     String nombre
-    String apellido
+    String apellidos
     String correo
     String nombreCompleto
     String roles
@@ -23,7 +23,7 @@ class XUsuario implements java.io.Serializable {
         username blank: false, size:1..64
         password blank: false, size:1..128
         nombre blank: false, size:1..64
-        apellido blank: false, size:1..64
+        apellidos blank: false, size:1..64
         correo nullable: true, size:1..128
         actividad size:1..32
         creador size:1..64
@@ -35,10 +35,10 @@ class XUsuario implements java.io.Serializable {
     }
 
     String getNombreCompleto() {
-        return "$apellido, $nombre"
+        return "$apellidos, $nombre"
     }
 
     String toString() {
-        return "$apellido, $nombre"
+        return "$apellidos, $nombre"
     }
 }

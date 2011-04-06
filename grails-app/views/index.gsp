@@ -7,9 +7,9 @@
   <body>
     <div class="nav">
       <span class="menuButton"><a class="home" href="${resource(dir: '')}"><g:message code="general.inicio" /></a></span>
-      <span class="menuButton"><g:link class="admin" controller="admin"><g:message code="general.admin" /></g:link></span>
-      <span class="menuButton"><g:link class="perfil" controller="usuario" action="perfil"><g:message code="general.perfil" /></g:link></span>
-      <span class="menuButton"><g:link class="salir" controller="logout" ><g:message code="general.salir" /></g:link></span>
+      <span class="menuButton"><g:link class="list" controller="admin"><g:message code="general.admin" /></g:link></span>
+      <span class="menuButton"><g:link class="list" controller="usuario" action="perfil"><g:message code="general.perfil" /></g:link></span>
+      <span class="menuButton"><g:link class="list" controller="logout" ><g:message code="general.salir" /></g:link></span>
     </div>
     <div class="body">
       <h1>FIT APPS</h1>

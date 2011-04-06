@@ -7,103 +7,95 @@
     </head>
     <body>
         <div class="nav">
+            <span class="menuButton"><g:link class="home" action="admin"><g:message code="general.admin" /></g:link></span>
             <span class="menuButton"><g:link class="list" action="lista"><g:message code="usuario.lista" /></g:link></span>
         </div>
         <div class="body">
-        <h1><g:message code="usuario.nuevo" /></h1>
-        <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-        </g:if>
-        <g:hasErrors bean="${usuario}">
+            <h1><g:message code="usuario.nuevo" /></h1>
+            <g:if test="${flash.message}">
+	            <div class="message">${flash.message}</div>
+            </g:if>
+            <g:hasErrors bean="${usuario}">
             <div class="errors">
-                <g:renderErrors bean="${usuario}" as="list" />
+                <g:renderErrors bean="${usuario}" as="lista" />
             </div>
-        </g:hasErrors>
-        <g:form action="crea" method="post" >
-            <div class="dialog">
-                <table>
-                    <tbody>
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="username"><g:message code="usuario.username" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'username', 'errors')}">
-                                <g:textField name="username" maxlength="64" value="${usuario?.username}" style="width:400px;"/>
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="password"><g:message code="usuario.password" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'password', 'errors')}">
-                                <g:passwordField name="password" maxlength="128" value="${usuario?.password}" style="width:400px;" />
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="nombre"><g:message code="usuario.nombre" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'nombre', 'errors')}">
-                                <g:textField name="nombre" maxlength="64" value="${usuario?.nombre}" style="width:400px;" />
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="apellido"><g:message code="usuario.apellido" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apellido', 'errors')}">
-                                <g:textField name="apellido" maxlength="64" value="${usuario?.apellido}" style="width:400px;" />
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="enabled"><g:message code="usuario.enabled" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'enabled', 'errors')}">
-                                <g:checkBox name="enabled" value="${usuario?.enabled}" />
-                            </td>
-                        </tr>
-            
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="correo"><g:message code="usuario.correo" /></label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean: usuario, field: 'correo', 'errors')}">
-                                <g:textField name="correo" maxlength="128" value="${usuario?.correo}" style="width:400px;"/>
-                            </td>
-                        </tr>
-
-                        <g:if test="${roles}">
+            </g:hasErrors>
+            <g:form action="crea" method="post" >
+                <div class="dialog">
+                    <table>
+                        <tbody>
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="roles"><g:message code="usuario.roles" /></label>
+                                    <label for="username"><g:message code="usuario.username" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'roles', 'errors')}">
-                                    <g:each var="entry" in="${roles}">
-                                        <g:checkBox name="${entry.key.authority}" value="${entry.value}"/> ${entry.key.authority}<br/>
-                                    </g:each>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'username', 'errors')}">
+                                    <g:textField name="username" maxlength="64" value="${usuario?.username}" />
                                 </td>
                             </tr>
-                        </g:if>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="buttons">
-                <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" /></span>
-            </div>
-        </g:form>
-    </div>
-    <g:javascript>
-        //document.forms[0].nombre.focus();
-        //document.forms[0].nombre.select();
-        $(document).ready(function() {
-            $('#username').focus();
-        });
-    </g:javascript>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="password"><g:message code="usuario.password" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'password', 'errors')}">
+                                    <g:passwordField name="password" maxlength="64" value="${usuario?.password}" />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="nombre"><g:message code="usuario.nombre" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'nombre', 'errors')}">
+                                    <g:textField name="nombre" maxlength="64" value="${usuario?.nombre}" />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="apellidos"><g:message code="usuario.apellidos" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'apellidos', 'errors')}">
+                                    <g:textField name="apellidos" maxlength="64" value="${usuario?.apellidos}" />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="enabled"><g:message code="usuario.enabled" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'enabled', 'errors')}">
+                                    <g:checkBox name="enabled" value="${usuario?.enabled}" />
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="correo"><g:message code="usuario.correo" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: usuario, field: 'correo', 'errors')}">
+                                    <g:textField name="correo" maxlength="128" value="${usuario?.correo}" />
+                                </td>
+                            </tr>
+                            <g:if test="${roles}">
+                                <tr class="prop">
+                                    <td valign="top" class="name">
+                                        <label for="roles"><g:message code="usuario.roles" /></label>
+                                    </td>
+                                    <td valign="top" class="value ${hasErrors(bean: usuario, field: 'roles', 'errors')}">
+                                        <g:each var="entry" in="${roles}">
+                                            <g:checkBox name="${entry.key.authority}" value="${entry.value}"/>${entry.key.authority}<br/>
+                                        </g:each>
+                                    </td>
+                                </tr>
+                            </g:if>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="buttons">
+                    <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create')}" /></span>
+                </div>
+            </g:form>
+        </div>
+        <g:javascript>
+            jQuery(document).ready(function() {
+                jQuery('#username').focus();
+            });
+        </g:javascript>
     </body>
 </html>

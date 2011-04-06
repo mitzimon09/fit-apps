@@ -49,8 +49,4 @@ class UsuarioRol implements Serializable {
 		id composite: ['rol', 'usuario']
 		version false
 	}
-
-    String toString() {
-        return "$usuario|$rol"
-    }
 }

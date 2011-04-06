@@ -1,28 +1,27 @@
 package general
 
-class Usuario implements java.io.Serializable {
+class Usuario {
 
-	String username
-	String password
+    String username
+    String password
     boolean enabled = false
     boolean accountExpired = false
     boolean accountLocked = false
     boolean passwordExpired = false
-	boolean base = false
     String nombre
-    String apellido
+    String apellidos
     String correo
     String nombreCompleto
+    
+    static transients = ['nombreCompleto']
 
-	static transients = ['nombreCompleto']
-
-	static constraints = {
+    static constraints = {
         username blank: false, unique: true, size:1..64
-        password blank: false, size:1..128
+        password blank: false, size:1..64
         nombre blank: false, size:1..64
-        apellido blank: false, size:1..64
+        apellidos blank: false, size:1..64
         correo nullable: true, size:1..128
-	}
+    }
 
     static mapping = {
         table 'usuarios'
@@ -30,26 +29,26 @@ class Usuario implements java.io.Serializable {
     }
 
     static namedQueries = {
-        listaConFiltro { params ->
-            def filtro = "%${params.filtro}%"
+        listaConFiltro { filtro ->
+            filtro = "%$filtro%"
             or {
                 ilike('username',filtro)
                 ilike('nombre',filtro)
-                ilike('apellido',filtro)
+                ilike('apellidos',filtro)
                 ilike('correo',filtro)
             }
         }
     }
 
-	Set<Rol> getAuthorities() {
-		UsuarioRol.findAllByUsuario(this).collect { it.rol } as Set
-	}
+    Set<Rol> getAuthorities() {
+        UsuarioRol.findAllByUsuario(this).collect { it.rol } as Set
+    }
 
     String getNombreCompleto() {
-        return "$apellido, $nombre"
+        return "$apellidos, $nombre"
     }
 
     String toString() {
-        return "$apellido, $nombre"
+        return "$apellidos, $nombre"
     }
 }

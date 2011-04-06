@@ -33,8 +33,8 @@
                             </tr>
                             <tr class="prop">
                                 <td valign="top" class="name"><label for="apellido"><g:message code="usuario.apellido" /></label></td>
-                                <td valign="top" class="value ${hasErrors(bean:usuario,field:'apellido','errors')}">
-                                    <input type="text" id="nombre" name="apellido" value="${usuario.apellido}"/>
+                                <td valign="top" class="value ${hasErrors(bean:usuario,field:'apellidos','errors')}">
+                                    <input type="text" id="nombre" name="apellido" value="${usuario.apellidos}"/>
                                 </td>
                             </tr>
                             <tr class="prop">

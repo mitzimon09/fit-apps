@@ -3,9 +3,10 @@ package general
 import grails.plugins.springsecurity.Secured
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
-//@Secured(['ROLE_ADMIN'])
+@Secured(['ROLE_ADMIN'])
+
 class UsuarioController {
-    
+
     def usuarioService
     def springSecurityService
 
@@ -40,11 +41,10 @@ class UsuarioController {
                 } else {
                     roles << Rol.findByAuthority('ROLE_USER')
                 }
-
                 usuario = usuarioService.crea(usuario, roles)
 
-                flash.message = message(code:"usuario.crea",args:[usuario])
-                redirect(action:"ver", id:usuario.id)
+                flash.message = message(code:"usuario.crea",args:[usuario.username])
+                redirect(action:"lista", id:usuario.id)
             }
         } catch(Exception e) {
             log.error("No se pudo crear el usuario",e)
@@ -93,8 +93,8 @@ class UsuarioController {
                     springSecurityService.principal.username == usuario.username) { 
                     springSecurityService.reauthenticate usuario.username
                 }
-                flash.message = message(code:"usuario.actualiza",args:[usuario])
-                redirect(action:"ver",id:usuario.id)
+                flash.message = message(code:"usuario.actualiza",args:[usuario.username])
+                redirect(action:"lista",id:usuario.id)
             }
         } catch(Exception e) {
             log.error("No se pudo actualizar el usuario",e)
@@ -104,7 +104,6 @@ class UsuarioController {
             flash.message = message(code:"usuario.noActualiza")
             render(view:"edita",model:[usuario:usuario])
         }
-
     }
 
     def elimina = {
@@ -125,12 +124,11 @@ class UsuarioController {
         def roles = Rol.list()
 
         def rolesFiltrados = [] as Set
-        //def creador = usuarioService.obtiene(springSecurityService.principal().id)
         if (SpringSecurityUtils.ifAnyGranted('ROLE_ADMIN')) {
             rolesFiltrados = roles
-        } else if (roles.authority.equals('ROL_USER')) {
-            rolesFiltrados << rol
-        }
+        } else if (rol.authority.equals('ROL_USER')) {
+                    rolesFiltrados << rol
+                }
 
         roles.sort { r1, r2 ->
             r1.authority <=> r2.authority
@@ -181,3 +179,4 @@ class UsuarioController {
         }
     }
 }
+
